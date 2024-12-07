@@ -1,15 +1,15 @@
 @extends('admin.app')
 
-@section('title', 'Daftar Barang')
+@section('title', 'Daftar Author')
 
 @section('content')
     <div class="container-fluid py-4">
         <div class="row">
             <div class="col-12">
-                <h6>Daftar Barang</h6>
+                <h6>Daftar Author</h6>
                 <div class="card mb-4">
                     <div class="card-header pb-0">
-                        <a href="#" class="btn bg-gradient-success" data-bs-toggle="modal" data-bs-target="#addBarang"><i
+                        <a href="#" class="btn bg-gradient-success" data-bs-toggle="modal" data-bs-target="#addAuthor"><i
                                 class="fa fa-plus" aria-hidden="true"></i><span
                                 class="text-capitalize ms-1">Tambah</span></a>
                     </div>
@@ -19,54 +19,49 @@
                                 @slot('header')
                                     <tr>
                                         <x-admin.th>No</x-admin.th>
-                                        <x-admin.th>Kode Barang</x-admin.th>
-                                        <x-admin.th>Nama Barang</x-admin.th>
-                                        <x-admin.th>Harga Barang</x-admin.th>
+                                        <x-admin.th>Nama Author</x-admin.th>
+                                        <x-admin.th>Email Author</x-admin.th>
                                         <x-admin.th>Action</x-admin.th>
                                     </tr>
                                 @endslot
 
-                                @foreach ($barang as $item)
+                                @foreach ($data as $item)
                                     <tr>
                                         <x-admin.td>{{ $loop->iteration }}</x-admin.td>
-                                        <x-admin.td>{{ $item->kode ?? '' }}</x-admin.td>
-                                        <x-admin.td>{{ $item->nama ?? '' }}</x-admin.td>
-                                        <x-admin.td>{{ $item->harga ?? '' }}</x-admin.td>
+                                        <x-admin.td>{{ $item->name ?? '' }}</x-admin.td>
+                                        <x-admin.td>{{ $item->email ?? '' }}</x-admin.td>
                                         <x-admin.td>
                                             <a href="#" class="btn bg-gradient-info" data-bs-toggle="modal"
-                                                data-bs-target="#editBarang{{ $item->id }}"><i class="fa fa-pencil"
+                                                data-bs-target="#editAuthor{{ $item->id }}"><i class="fa fa-pencil"
                                                     aria-hidden="true"></i><span
                                                     class="text-capitalize ms-1">Edit</span></a>
                                             <a href="#" class="btn bg-gradient-danger" data-bs-toggle="modal"
-                                                data-bs-target="#hapusBarang{{ $item->id }}"><i class="fa fa-trash"
+                                                data-bs-target="#hapusAuthor{{ $item->id }}"><i class="fa fa-trash"
                                                     aria-hidden="true"></i><span
                                                     class="text-capitalize ms-1">Hapus</span></a>
                                         </x-admin.td>
 
-                                        <!-- Modal Edit Barang -->
-                                        <div class="modal fade" id="editBarang{{ $item->id }}" data-bs-backdrop="static"
-                                            data-bs-keyboard="false" tabindex="-1" aria-labelledby="editBarangLabel"
+                                        <!-- Modal Edit Author -->
+                                        <div class="modal fade" id="editAuthor{{ $item->id }}" data-bs-backdrop="static"
+                                            data-bs-keyboard="false" tabindex="-1" aria-labelledby="editAuthorLabel"
                                             aria-hidden="true">
                                             <div class="modal-dialog modal-dialog-scrollable">
                                                 <div class="modal-content">
                                                     <div class="modal-header">
-                                                        <h1 class="modal-title fs-5" id="editBarangLabel">Edit Data Barang
+                                                        <h1 class="modal-title fs-5" id="editAuthorLabel">Edit Data Author
                                                         </h1>
                                                         <button type="button" class="btn-close" data-bs-dismiss="modal"
                                                             aria-label="Close"></button>
                                                     </div>
-                                                    <form action="{{ route('barang.update', $item->id) }}" method="post">
+                                                    <form action="{{ route('Author.update', $item->id) }}" method="post">
                                                         @csrf
                                                         <div class="modal-body">
-                                                            <x-admin.input type="text" placeholder="Kode Barang"
-                                                                label="Kode Barang" name="kodeBarang"
-                                                                value="{{ $item->kode ?? '' }}" />
-                                                            <x-admin.input type="text" placeholder="Nama Barang"
-                                                                label="Nama Barang" name="namaBarang"
-                                                                value="{{ $item->nama ?? '' }}" />
-                                                            <x-admin.input type="number" placeholder="Harga Barang"
-                                                                label="Harga Barang" name="hargaBarang"
-                                                                value="{{ $item->harga ?? '' }}" />
+                                                            <x-admin.input type="text" placeholder="Nama Author"
+                                                                label="Nama Author" name="name"
+                                                                value="{{ $item->name ?? '' }}" />
+                                                            <x-admin.input type="text" placeholder="Email Author"
+                                                                label="Email Author" name="email"
+                                                                value="{{ $item->email ?? '' }}" />
                                                         </div>
                                                         <div class="modal-footer">
                                                             <button type="submit"
@@ -79,14 +74,14 @@
                                             </div>
                                         </div>
 
-                                        <!-- Modal Hapus Barang -->
-                                        <div class="modal fade" id="hapusBarang{{ $item->id }}"
+                                        <!-- Modal Hapus Author -->
+                                        <div class="modal fade" id="hapusAuthor{{ $item->id }}"
                                             data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
-                                            aria-labelledby="hapusBarangLabel" aria-hidden="true">
+                                            aria-labelledby="hapusAuthorLabel" aria-hidden="true">
                                             <div class="modal-dialog modal-dialog-scrollable">
                                                 <div class="modal-content">
                                                     <div class="modal-header">
-                                                        <h1 class="modal-title fs-5" id="hapusBarangLabel">Hapus Data Barang
+                                                        <h1 class="modal-title fs-5" id="hapusAuthorLabel">Hapus Data Author
                                                         </h1>
                                                         <button type="button" class="btn-close" data-bs-dismiss="modal"
                                                             aria-label="Close"></button>
@@ -97,7 +92,7 @@
                                                         <p>Yakin ingin menghapus data {{ $item->nama }}?</p>
                                                     </div>
                                                     <div class="modal-footer">
-                                                        <a href="{{ route('barang.destroy', $item->id) }}" type="submit"
+                                                        <a href="{{ route('Author.destroy', $item->id) }}" type="submit"
                                                             class="btn btn-sm btn-danger">Hapus</a>
                                                         <button type="button" class="btn btn-sm btn-secondary"
                                                             data-bs-dismiss="modal">Batal</button>
@@ -115,22 +110,20 @@
         </div>
     </div>
 
-    <!-- Modal Add Barang -->
-    <div class="modal fade" id="addBarang" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
-        aria-labelledby="addBarangLabel" aria-hidden="true">
+    <!-- Modal Add Author -->
+    <div class="modal fade" id="addAuthor" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
+        aria-labelledby="addAuthorLabel" aria-hidden="true">
         <div class="modal-dialog modal-dialog-scrollable">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h1 class="modal-title fs-5" id="addBarangLabel">Tambah Data Barang</h1>
+                    <h1 class="modal-title fs-5" id="addAuthorLabel">Tambah Data Author</h1>
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
-                <form action="{{ route('barang.store') }}" method="post">
+                <form action="{{ route('Author.store') }}" method="post">
                     @csrf
                     <div class="modal-body">
-                        <x-admin.input type="text" placeholder="Kode Barang" label="Kode Barang" name="kodeBarang" />
-                        <x-admin.input type="text" placeholder="Nama Barang" label="Nama Barang" name="namaBarang" />
-                        <x-admin.input type="number" placeholder="Harga Barang" label="Harga Barang"
-                            name="hargaBarang" />
+                        <x-admin.input type="text" placeholder="Nama Author" label="Nama Author" name="name" />
+                        <x-admin.input type="email" placeholder="Email Author" label="Email Author" name="email" />
                     </div>
                     <div class="modal-footer">
                         <button type="submit" class="btn btn-sm btn-success">Simpan</button>

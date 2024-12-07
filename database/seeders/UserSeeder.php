@@ -22,27 +22,6 @@ class UserSeeder extends Seeder
                 'role' => 'Admin',
                 'remember_token' => null,
             ],
-            [
-                'name' => 'Petugas 1',
-                'email' => 'petugas1@gmail.com',
-                'password' => Hash::make('12345678'),
-                'role' => 'Petugas',
-                'remember_token' => null,
-            ],
-            [
-                'name' => 'Petugas 2',
-                'email' => 'petugas2@gmail.com',
-                'password' => Hash::make('12345678'),
-                'role' => 'Petugas',
-                'remember_token' => null,
-            ],
-            [
-                'name' => 'Petugas 3',
-                'email' => 'petugas3@gmail.com',
-                'password' => Hash::make('12345678'),
-                'role' => 'Petugas',
-                'remember_token' => null,
-            ],
         ]);
     }
 }

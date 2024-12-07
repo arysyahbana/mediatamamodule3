@@ -5,7 +5,7 @@
  <script src={{ asset('dist/assets/js/plugins/smooth-scrollbar.min.js') }}></script>
  <script src={{ asset('dist/assets/js/plugins/chartjs.min.js') }}></script>
  <!-- jQuery -->
- <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
  <script src="https://cdn.datatables.net/2.1.0/js/dataTables.js"></script>
  <script>
      $(document).ready(function() {

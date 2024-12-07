@@ -10,7 +10,11 @@
         @yield('title')
     </title>
     @include('admin.Layouts.css')
+    <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />
+
     <script src="{{ asset('dist/assets/js/iziToast.min.js') }}"></script>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
 </head>
 
 <body class="g-sidenav-show  bg-gray-100">
@@ -98,6 +102,23 @@
     <script async defer src="https://buttons.github.io/buttons.js"></script>
     <!-- Control Center for Soft Dashboard: parallax effects, scripts for the example pages etc -->
     <script src={{ asset('dist/assets/js/soft-ui-dashboard.min.js?v=1.0.3') }}></script>
+    <script>
+        $(document).ready(function() {
+            // Inisialisasi Select2 untuk elemen yang ada pada load awal
+            $('.tag').select2({
+                width: '100%'
+            });
+
+            // Inisialisasi ulang Select2 ketika modal edit ditampilkan
+            $(document).on('shown.bs.modal', function(e) {
+                $(e.target).find('.tag').select2({
+                    width: '100%'
+                });
+            });
+        });
+    </script>
+
+
 </body>
 
 </html>
